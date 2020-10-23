@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
-curl https://golang.org/dl/go1.15.3.darwin-amd64.tar.gz > go1.15.3.darwin-amd64.tar.gz
+curl https://dl.google.com/go/go1.15.3.linux-amd64.tar.gz > go1.15.3.linux-amd64.tar.gz
 
-echo "2e045043a28a2834e10edeb64c0cffd080a3525016fab1898d5624b57312a698  go1.15.3.darwin-amd64.tar.gz" | sha256sum -c
+echo "010a88df924a81ec21b293b5da8f9b11c176d27c0ee3962dc1738d2352d3c02d  go1.15.3.linux-amd64.tar.gz" | sha256sum -c
 
-tar xzf go1.15.3.darwin-amd64.tar.gz
+tar xzf go1.15.3.linux-amd64.tar.gz
 
 export GOROOT=/libpostal/go
 export GOPATH=/libpostal/workspace
