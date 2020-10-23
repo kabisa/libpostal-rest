@@ -9,6 +9,10 @@ tar xzf go1.15.3.linux-amd64.tar.gz
 
 export GOROOT=/libpostal/go
 export GOPATH=/libpostal/workspace
+export GOBIN=$GOPATH/bin
 export PATH=$PATH:/libpostal/go/bin
 
+go get
 go install
+
+mv $GOBIN/libpostal $GOBIN/libpostal-rest
