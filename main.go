@@ -15,9 +15,7 @@ import (
 	parser "github.com/openvenues/gopostal/parser"
 )
 
-type Request struct {
-	Query string `json:"query"`
-}
+type Address map[string]string
 
 func main() {
 	host := os.Getenv("LISTEN_HOST")
@@ -67,12 +65,16 @@ func HealthHandler(w http.ResponseWriter, r *http.Request) {
 func ExpandHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	var req Request
+	var req []string
+	var expansions [][]string
 
 	q, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(q, &req)
 
-	expansions := expand.ExpandAddress(req.Query)
+	for r := range req {
+		expansion := expand.ExpandAddress(req[r])
+		expansions = append(expansions, expansion)
+	}
 
 	expansionThing, _ := json.Marshal(expansions)
 	w.Write(expansionThing)
@@ -81,12 +83,21 @@ func ExpandHandler(w http.ResponseWriter, r *http.Request) {
 func ParserHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	var req Request
+	var req []string
+	var parsed []Address
 
 	q, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(q, &req)
 
-	parsed := parser.ParseAddress(req.Query)
+	for r := range req {
+		var parse = parser.ParseAddress(req[r])
+		var address = make(Address)
+		for p := range parse {
+			address[parse[p].Label] = parse[p].Value
+		}
+		parsed = append(parsed, address)
+	}
+
 	parseThing, _ := json.Marshal(parsed)
 	w.Write(parseThing)
 }
