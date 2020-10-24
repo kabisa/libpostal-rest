@@ -51,9 +51,12 @@ jobs:
 
       - name: Run Buildx (push image)
         if: success()
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: latest
         run: |
           docker buildx build
-          --platform $DOCKER_TARGET_PLATFORMS
+          --platform "$DOCKER_TARGET_PLATFORMS"
           --tag "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
           --file ./Dockerfile
           --push .
