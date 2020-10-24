@@ -14,7 +14,7 @@ env:
   CLUSTER_NAME: libpostal-production-api
   SERVICE_NAME: libpostal-production-api-service
   ECR_REPOSITORY: libpostal-production-api
-  $DOCKER_TARGET_PLATFORMS: linux/amd64,linux/arm64
+  DOCKER_TARGET_PLATFORMS: linux/amd64,linux/arm64
 
 jobs:
   # Push image to GitHub Packages.
@@ -53,7 +53,7 @@ jobs:
         if: success()
         run: |
           docker buildx build
-          --platform "$DOCKER_TARGET_PLATFORMS"
+          --platform $DOCKER_TARGET_PLATFORMS
           --tag "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
           --file ./Dockerfile
           --push .
