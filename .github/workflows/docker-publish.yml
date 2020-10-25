@@ -2,6 +2,7 @@ name: Docker
 
 on:
   push:
+    pull_request:
     # Publish `master` as Docker `latest` image.
     branches:
       - master
@@ -14,7 +15,7 @@ env:
   CLUSTER_NAME: libpostal-production-api
   SERVICE_NAME: libpostal-production-api-service
   ECR_REPOSITORY: libpostal-production-api
-  DOCKER_TARGET_PLATFORMS: linux/amd64,linux/arm64
+  DOCKER_TARGET_PLATFORMS: linux/arm64
   IMAGE_TAG: latest
 
 jobs:

@@ -27,7 +27,7 @@ tar xzf "go1.15.3.$GOPLATFORM.tar.gz"
 export GOROOT=/libpostal/go
 export GOPATH=/libpostal/workspace
 export GOBIN=$GOPATH/bin
-export PATH=$PATH:/libpostal/go/bin
+export PATH=$PATH:$GOBIN
 
 go get
 go install
