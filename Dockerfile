@@ -1,8 +1,8 @@
 FROM alpine:3.8 as libpostal-build
 
-ENV LIBPOSTAL_VERSION="1.0.0"
+ENV LIBPOSTAL_VERSION="1.1-alpha"
 ENV LIBPOSTAL_DOWNLOAD_URL="https://github.com/openvenues/libpostal/archive/v$LIBPOSTAL_VERSION.tar.gz"
-ENV LIBPOSTAL_DOWNLOAD_SHA="3035af7e15b2894069753975d953fa15a86d968103913dbf8ce4b8aa26231644"
+ENV LIBPOSTAL_DOWNLOAD_SHA="c8a88eed70d8c09f68e1e69bcad35cb397e6ef11b3314e18a87b314c0a5b4e3a"
 
 RUN apk add --no-cache --virtual .build-deps \
         curl \
