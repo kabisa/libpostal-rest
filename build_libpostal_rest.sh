@@ -30,6 +30,4 @@ export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 
 go get
-go install
-
-mv $GOBIN/libpostal $GOBIN/libpostal-rest
+go build -o $GOBIN/libpostal-rest
