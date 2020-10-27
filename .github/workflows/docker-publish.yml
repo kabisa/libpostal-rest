@@ -15,7 +15,7 @@ env:
   CLUSTER_NAME: libpostal-production-api
   SERVICE_NAME: libpostal-production-api-service
   ECR_REPOSITORY: libpostal-production-api
-  DOCKER_TARGET_PLATFORMS: linux/arm64
+  DOCKER_TARGET_PLATFORMS: linux/arm64,linux/amd64
   IMAGE_TAG: latest
 
 jobs:
