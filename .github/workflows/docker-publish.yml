@@ -3,13 +3,12 @@ name: Docker
 on:
   push:
     pull_request:
-    # Publish `master` as Docker `latest` image.
+
     branches:
       - master
 
-    schedule:
-      # Every Sunday night, once a week
-      - cron: '0 0 * * 0'
+  schedule:
+    - cron: '0 0 * * 0'
 env:
   IMAGE_NAME: libpostal-rest
   CLUSTER_NAME: libpostal-production-api
